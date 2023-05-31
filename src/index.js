@@ -2,6 +2,7 @@ const app = require('./utils/app')
 const mongoose = require('mongoose')
 
 require('dotenv').config();
+// require("./.env").config();
 
 const { PORT, MONGODB_URL } = process.env
 
