@@ -1,4 +1,3 @@
-
 function isValid (data) {
     if(typeof data !== "string" || data.trim().length == "") return false
     else return true
