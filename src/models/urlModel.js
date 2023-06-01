@@ -10,18 +10,18 @@ const urlSchema = new mongoose.Schema({
     longUrl:{
         type:String,
         required:true,
-        validate:{
-            validator:function(value){
-                if(validator.isURL(value)){
-                    console.log(value)
-                }else{
-                    console.log("invalid value")
-                }
+        // validate:{
+        //     validator:function(value){
+        //         if(validator.isURL(value)){
+        //             console.log(value)
+        //         }else{
+        //             console.log("invalid value")
+        //         }
                 
-            },
-            //why to use this
-            message:"invalid url"  //is it compulsory
-        }
+        //     },
+        //     //why to use this
+        //     message:"invalid url"  //is it compulsory
+        // }
     },
     shortUrl:{
         type:String,
