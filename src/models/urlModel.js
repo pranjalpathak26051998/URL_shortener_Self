@@ -19,10 +19,11 @@ const urlSchema = new mongoose.Schema({
                 }
                 
             },
-            //why to use this//message:"invalid url"
+            //why to use this
+            message:"invalid url"  //is it compulsory
         }
     },
-    shortURL:{
+    shortUrl:{
         type:String,
         unique:true,
         required:true
