@@ -1,8 +1,8 @@
 const urlModel = require('../models/urlModel')
 const validURl = require('valid-url');
 const shortId = require('shortid');
-const redis =require('redis')
-const client=redis.createClient()
+// const redis =require('redis')
+// const client=redis.createClient()
 
 const urlControl = async (req, res) =>
  {
@@ -16,7 +16,9 @@ const urlControl = async (req, res) =>
         }
         let checkUrl = await urlModel.findOne({ longUrl: longUrl })
         // console.log(checkUrl)
-        if (checkUrl) return res.status(200).send({ status: true, data: checkUrl.shortUrl }) // reconfirm status code
+        if (checkUrl) return res.status(200).send({ status: true, data: `URL Already exist therefore cannot re-generate
+          hence sharing the already generated shortUrl 
+          ${checkUrl.shortUrl}` }) // reconfirm status code
 
 
         const baseUrl = "http://localhost:3000/"
@@ -36,13 +38,13 @@ const urlControl = async (req, res) =>
         })
         //using redis for cache
         //step1 start connection
-        await client.connect({useNewUrlParser : true,}).then(()=>{console.log("connect to the PORT 6379")}).catch((err)=>{console.log(err)})
-        //step2 set the connection to key value pair
-        let cacheData = await client.set('longUrl',longUrl)
-        console.log(cacheData)
-        const value =await client.get('longUrl')
-        await client.disconnect()
-        console.log(value)
+        // await client.connect({useNewUrlParser : true,}).then(()=>{console.log("connect to the PORT 6379")}).catch((err)=>{console.log(err)})
+        // //step2 set the connection to key value pair
+        // let cacheData = await client.set('longUrl',longUrl)
+        // console.log(cacheData)
+        // const value =await client.get('longUrl')
+        // await client.disconnect()
+        // console.log(value)
 
         return res.status(201).send({ status: true, data: savedResponse })
 
